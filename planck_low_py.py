@@ -55,9 +55,9 @@ def planck_lowE_binned_loglike(Cl_theory):
         loglike+=np.log(like)
     return loglike
 
-def planck_lowE_binned_loglike_cobaya(_theory={'Cl': {'ee': 29}}):
-    ell = _theory.get_Cl(ell_factor=False)['ell'][2:30]
-    Cl_theory = _theory.get_Cl(ell_factor=False)['ee'][2:30]
+def planck_lowE_binned_loglike_cobaya(_self=None):
+    ell = _self.provider.get_Cl(ell_factor=False)['ell'][2:30]
+    Cl_theory = _self.provider.get_Cl(ell_factor=False)['ee'][2:30]
 
     Dl_theory_bin=get_binned_D_from_theory_Cls(ell , Cl_theory, lmin_list_EE, lmax_list_EE)
 
@@ -85,9 +85,10 @@ def planck_lowT_binned_loglike(Cl_theory):
     return loglike
 
 
-def planck_lowT_binned_loglike_cobaya(_theory={'Cl': {'tt': 29}}):
-    ell = _theory.get_Cl(ell_factor=False)['ell'][2:30]
-    Cl_theory = _theory.get_Cl(ell_factor=False)['tt'][2:30]
+def planck_lowT_binned_loglike_cobaya(_self=None):
+    ell = _self.provider.get_Cl(ell_factor=False)['ell'][2:30]
+    Cl_theory = _self.provider.get_Cl(ell_factor=False)['tt'][2:30]
+
     Dl_theory_bin=get_binned_D_from_theory_Cls(ell , Cl_theory, lmin_list_TT, lmax_list_TT)
     loglike=0
     for i, D in enumerate(Dl_theory_bin):
